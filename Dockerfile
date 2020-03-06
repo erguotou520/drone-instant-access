@@ -1,11 +1,11 @@
 FROM alpine:3.9
 
-LABEL maintainer="Mioto <yaku.mioto@gmail.com>"
-
-RUN apk update && apk add --no-cache ca-certificates
+LABEL maintainer="erguotou525@gmail.com"
 
 WORKDIR /drone/src
 
-COPY serverchan /usr/local/bin/serverchan
+RUN apk update && apk add --no-cache ca-certificates && go build -o instant-access
 
-ENTRYPOINT ["serverchan"]
+COPY instant-access /usr/local/bin/instant-access
+
+ENTRYPOINT ["instant-access"]

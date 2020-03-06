@@ -6,7 +6,7 @@ steps:
   - name: build
     image: golang:1.12-alpine
     commands:
-      - GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o serverchan serverchan.go
+      - GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o instant-access main.go
     when:
       event:
         - tag
@@ -14,22 +14,22 @@ steps:
   - name: build-image
     image: plugins/docker
     settings:
-      username: yakumioto
+      username: erguotou
       password:
         from_secret: docker_pwd
-      repo: yakumioto/drone-serverchan
+      repo: erguotou/drone-instant-access
       auto_tag: true
     when:
       event:
         - tag
 
   - name: sendmsg
-    image: yakumioto/drone-serverchan
+    image: erguotou/drone-instant-access
     settings:
-      key:
+      channel:
         from_secret: serverchan_key
-      text: succeeded
-      desp: docker build yakumioto/serverchan
+      head: succeeded
+      body: docker build erguotou/drone-instant-access
     when:
       event:
         - tag

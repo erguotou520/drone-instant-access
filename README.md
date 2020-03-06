@@ -1,48 +1,46 @@
-# Drone ServerChan(Server酱)
+# Drone Instant Access(即时达)
 
-[![Build Status](https://drone.mioto.me/api/badges/yakumioto/drone-serverchan/status.svg)](https://drone.mioto.me/yakumioto/drone-serverchan)
-![Go Report](https://goreportcard.com/badge/github.com/yakumioto/drone-serverchan)
-![Docker Pulls](https://img.shields.io/docker/pulls/yakumioto/drone-serverchan.svg)
-[![](https://images.microbadger.com/badges/image/yakumioto/drone-serverchan.svg)](https://microbadger.com/images/yakumioto/drone-serverchan)
-![GitHub release](https://img.shields.io/github/release/yakumioto/drone-serverchan.svg)
-
-drone ServerChan(Server酱) 微信消息通知插件
+drone instant access(即时达) 微信消息通知插件
 
 ## 简介
 
-基于 [ServerChan(Server酱)](http://sc.ftqq.com/3.version) 封装的微信消息通知插件
+基于 [即时达](http://push.ijingniu.cn/) 封装的微信消息通知插件
 
 ## 栗子
-
-明文 key 配置
-
 ```yml
+# 普通
 ---
 kind: pipeline
 name: default
 
 steps:
-  - name: send-wechat
-    image: yakumioto/drone-serverchan
+  - name: wechat-notify
+    image: erguotou520/drone-instant-access
     settings:
-      key: {your key}
-      text: {消息标题}
-      desp: {消息内容 支持MarkDown}
+      channel: "你订阅的即时达通道id"
+      # channel:
+      #   from_secret: CHANNEL
+      text: "项目名称：构建结果"
+      desp: "{DRONE_BUILD_STATUS} at {DRONE_REPO_BRANCH} branch"
 ```
 
-密文 key 配置
-
-```yml
+### markdown格式，不建议使用，因为微信模板消息里的内容不支持markndown，只有详情支持
+```yaml
 ---
 kind: pipeline
 name: default
 
 steps:
-  - name: send-wechat
-    image: yakumioto/drone-serverchan
+  - name: wechat-notify
+    image: erguotou520/drone-instant-access
     settings:
-      key:
-        from_secret: {your key}
-      text: {消息标题}
-      desp: {消息内容 支持MarkDown}
+      channel: "你订阅的即时达通道id"
+      # channel:
+      #   from_secret: CHANNEL
+      head: "要发送的消息标题"
+      body: >
+        # 标题
+        ![](https://i.loli.net/2020/03/07/DOibrcZqTKpmUVY.png)
+        消息已推送！  
+        本次构建结果{DRONE_BUILD_STATUS}
 ```
