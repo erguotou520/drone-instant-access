@@ -1,3 +1,5 @@
+<div align="center"><img width="60%" src="./logo.png" /></div>
+
 # Drone Instant Access(即时达)
 
 drone instant access(即时达) 微信消息通知插件
@@ -12,8 +14,6 @@ drone instant access(即时达) 微信消息通知插件
 ## 简介
 
 基于 [即时达](http://push.ijingniu.cn/) 封装的微信消息通知插件
-
-<div style="text-align:center"><img src="./logo.png" /></div>
 
 ## 栗子
 ```yml
