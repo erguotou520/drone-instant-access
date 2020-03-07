@@ -2,9 +2,8 @@ name: Go
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+      - 'v*'
 
 jobs:
 
@@ -40,10 +39,24 @@ jobs:
         CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o release/instant-access-linux-arm64
         CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o release/instant-access-windows.exe
         CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o release/instant-access-windows-386.exe
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        # Artifact name
-        name: release
-        # Directory containing files to upload
-        path: release
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: 首次发布
+        draft: true
+        prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./release
+        asset_name: instant-access
+        asset_content_type: application/octet-stream

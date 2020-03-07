@@ -2,6 +2,8 @@
 
 drone instant access(即时达) 微信消息通知插件
 
+![Go](https://github.com/erguotou520/drone-instant-access/workflows/Go/badge.svg)
+
 ## 简介
 
 基于 [即时达](http://push.ijingniu.cn/) 封装的微信消息通知插件
@@ -43,4 +45,17 @@ steps:
         ![](https://i.loli.net/2020/03/07/DOibrcZqTKpmUVY.png)
         消息已推送！  
         本次构建结果{DRONE_BUILD_STATUS}
+```
+
+## Docker运行
+
+```bash
+docker run -e PLUGIN_CHANNEL=xxx -e PLUGIN_HEAD=测试标题 -e PLUGIN_BODY=测试内容 run erguotou/drone-instant-access
+```
+
+## 命令行运行
+
+从actions中下载二进制文件
+```bash
+PLUGIN_CHANNEL=xxx -e PLUGIN_HEAD=测试标题 -e PLUGIN_BODY=测试内容 /path/to/instant-access-linux
 ```
