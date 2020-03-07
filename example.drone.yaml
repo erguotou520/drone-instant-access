@@ -5,7 +5,7 @@ name: default
 
 steps:
   - name: wechat-notify
-    image: erguotou520/drone-instant-access
+    image: erguotou/drone-instant-access
     settings:
       channel: "你订阅的即时达通道id"
       # channel:
@@ -20,7 +20,7 @@ name: default
 
 steps:
   - name: wechat-notify
-    image: erguotou520/drone-instant-access
+    image: erguotou/drone-instant-access
     settings:
       channel: "你订阅的即时达通道id"
       # channel:

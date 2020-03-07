@@ -13,7 +13,7 @@ drone instant access(即时达) 微信消息通知插件
 
 ## 简介
 
-基于 [即时达](http://push.ijingniu.cn/) 封装的微信消息通知插件
+基于 [即时达](http://push.ijingniu.cn/) 封装的微信消息通知插件。请合理规范使用免费资源，不乱用，不作恶。
 
 ## 栗子
 ```yml
@@ -24,7 +24,7 @@ name: default
 
 steps:
   - name: wechat-notify
-    image: erguotou520/drone-instant-access
+    image: erguotou/drone-instant-access
     settings:
       channel: "你订阅的即时达通道id"
       # channel:
@@ -41,7 +41,7 @@ name: default
 
 steps:
   - name: wechat-notify
-    image: erguotou520/drone-instant-access
+    image: erguotou/drone-instant-access
     settings:
       channel: "你订阅的即时达通道id"
       # channel:
