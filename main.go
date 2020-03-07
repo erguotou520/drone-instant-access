@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	channel  string
-	head string
-	body string
+	channel string
+	head    string
+	body    string
 )
 
 func init() {

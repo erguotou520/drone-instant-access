@@ -48,7 +48,7 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: Auto generated release
-        draft: true
+        draft: false
         prerelease: false
     - name: Upload Assets to Release
       uses: csexton/release-asset-action@v2
