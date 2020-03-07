@@ -11,7 +11,7 @@ steps:
       # channel:
       #   from_secret: CHANNEL
       head: "项目名称：构建结果"
-      body: "{DRONE_BUILD_STATUS} at {DRONE_REPO_BRANCH} branch"
+      body: "${DRONE_BUILD_STATUS} at ${DRONE_REPO_BRANCH} branch"
 
 # markdown格式，不建议使用，因为微信模板消息里的内容不支持markndown，只有详情支持
 ---
