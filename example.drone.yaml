@@ -10,8 +10,8 @@ steps:
       channel: "你订阅的即时达通道id"
       # channel:
       #   from_secret: CHANNEL
-      text: "项目名称：构建结果"
-      desp: "{DRONE_BUILD_STATUS} at {DRONE_REPO_BRANCH} branch"
+      head: "项目名称：构建结果"
+      body: "{DRONE_BUILD_STATUS} at {DRONE_REPO_BRANCH} branch"
 
 # markdown格式，不建议使用，因为微信模板消息里的内容不支持markndown，只有详情支持
 ---
